@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rotasi Geometry Classroom</title>
+<style>
+:root{--navy:#20334f;--blue:#5b8def;--sky:#eaf4ff;--cream:#fff9ec;--gold:#ffc857;--mint:#dff6ed;--ink:#263449;--muted:#66758b;--pink:#ffe6ef;--line:#dce6f2;--white:#fff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#f3f7fc;color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.65}
+header{background:linear-gradient(120deg,#20334f,#345b87 65%,#6f9ed2);color:white;padding:26px max(5vw,20px) 34px;position:relative;overflow:hidden}
+header:after{content:"✦   ✧      ✦       ✧";position:absolute;right:4%;top:10px;font-size:32px;color:#ffe3a0;opacity:.75;letter-spacing:12px}
+.topline{display:flex;justify-content:space-between;gap:15px;align-items:center;flex-wrap:wrap;max-width:1180px;margin:auto}
+.brand{font-weight:800;letter-spacing:.08em;font-size:.85rem;color:#ffdf96}
+.pill{border:1px solid #ffffff55;border-radius:99px;padding:6px 12px;font-size:.8rem;background:#ffffff14}
+.hero{max-width:1180px;margin:28px auto 0;display:grid;grid-template-columns:1.4fr .8fr;gap:24px;align-items:center}
+h1{font-size:clamp(2rem,5vw,3.6rem);line-height:1.08;margin:8px 0 14px}
+.hero p{max-width:680px;color:#e5efff;margin:0}
+.hero-art{background:#ffffff18;border:1px solid #ffffff38;border-radius:24px;padding:18px;text-align:center;backdrop-filter:blur(8px)}
+.hero-art .emoji{font-size:4rem;display:block}.hero-art strong{color:#ffe3a0}
+main{max-width:1180px;margin:24px auto;padding:0 18px 60px;display:grid;grid-template-columns:270px minmax(0,1fr);gap:22px}
+aside{align-self:start;position:sticky;top:14px;background:white;border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 8px 28px #20334f0b}
+aside h3{margin:0 0 12px;font-size:1rem}
+.progress-track{height:9px;border-radius:99px;background:#e9eef5;overflow:hidden;margin:8px 0 6px}
+.progress-fill{height:100%;width:0;background:linear-gradient(90deg,#5b8def,#62c6a7);transition:width .3s}
+.progress-copy{font-size:.78rem;color:var(--muted)}
+.nav{display:grid;gap:7px;margin-top:16px}
+.nav button{border:0;background:transparent;text-align:left;padding:10px 11px;border-radius:11px;color:var(--ink);cursor:pointer;font:inherit;font-size:.9rem}
+.nav button:hover{background:var(--sky)}.nav button.active{background:#e8f0ff;color:#2456a5;font-weight:700}
+.nav button:disabled{opacity:.43;cursor:not-allowed}
+.content{min-width:0}
+.card{background:white;border:1px solid var(--line);border-radius:20px;padding:clamp(18px,3vw,30px);box-shadow:0 10px 30px #20334f09;margin-bottom:18px}
+.kicker{color:#4777c4;font-weight:800;text-transform:uppercase;letter-spacing:.1em;font-size:.73rem}
+h2{font-size:clamp(1.45rem,3vw,2rem);line-height:1.2;margin:7px 0 14px;color:var(--navy)}
+h3{color:var(--navy);margin:22px 0 8px}
+.callout{background:var(--sky);border-left:4px solid var(--blue);padding:14px 16px;border-radius:12px;margin:16px 0}
+.callout.gold{background:#fff6dc;border-color:var(--gold)}.callout.green{background:var(--mint);border-color:#54b894}
+.formula{background:#f5f8fc;border:1px dashed #9cb4d5;border-radius:14px;padding:16px;text-align:center;font-size:1.13rem;font-weight:750;color:#1d477c;margin:12px 0;overflow-wrap:anywhere}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.mini{border:1px solid var(--line);border-radius:14px;padding:14px;background:#fff}
+.mini strong{color:#315d9d}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.95rem}th,td{border:1px solid var(--line);padding:10px;text-align:center}th{background:#eef4fc;color:#294c79}
+.read-check{display:flex;gap:10px;align-items:flex-start;background:#fff8e8;padding:13px;border-radius:12px;margin:18px 0}
+.read-check input{margin-top:6px;transform:scale(1.2)}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+button.primary,button.secondary{border:0;border-radius:12px;padding:11px 17px;font-weight:750;cursor:pointer;font-size:.93rem}
+.primary{background:#315f9f;color:white}.primary:hover{background:#244a7f}.secondary{background:#eaf1fb;color:#294d7d}
+button:disabled{opacity:.4;cursor:not-allowed}
+.quiz{background:#fbfcff;border:1px solid var(--line);border-radius:16px;padding:17px;margin:14px 0}
+.option{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:11px;padding:10px;margin:8px 0;cursor:pointer}
+.option:hover{background:#f0f6ff}.option input{margin-top:5px}
+.feedback{font-weight:700;margin-top:10px}.correct{color:#16845e}.wrong{color:#bd4d4d}
+canvas{width:100%;max-width:620px;height:auto;background:#fbfdff;border:1px solid var(--line);border-radius:14px;display:block;margin:10px auto}
+.controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:12px 0}
+input[type=number],select{padding:9px 10px;border:1px solid #cbd8e8;border-radius:9px;font:inherit;width:85px}
+.lock-note{font-size:.82rem;color:var(--muted);margin-top:10px}
+footer{text-align:center;color:var(--muted);font-size:.82rem;padding:20px}
+.small{font-size:.88rem;color:var(--muted)}
+.hidden{display:none!important}
+@media(max-width:820px){main{grid-template-columns:1fr}aside{position:static}.nav{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{grid-template-columns:1fr}.hero-art{display:none}}
+@media(max-width:520px){.nav{grid-template-columns:1fr 1fr}.grid2{grid-template-columns:1fr}.card{border-radius:15px}header{padding-bottom:26px}}
+</style>
+</head>
+<body>
+<header>
+ <div class="topline"><div class="brand">✦ MEDIA PEMBELAJARAN INTERAKTIF</div><div class="pill">MATEMATIKA • TRANSFORMASI GEOMETRI</div></div>
+ <div class="hero">
+  <div><div class="pill">SELAMAT DATANG DI KELAS MATEMATIKA</div><h1>Rotasi Geometry<br>Classroom</h1><p>Masuk ke kelas, pelajari konsep perputaran, pahami rumusnya, lalu buktikan pemahamanmu melalui tantangan di setiap pelajaran.</p></div>
+  <div class="hero-art"><span class="emoji">🏫 📐</span><strong>Belajar • Amati • Coba • Kuasai</strong><p class="small" style="color:#e5efff">Setiap pintu pelajaran terbuka setelah bacaan diselesaikan.</p></div>
+ </div>
+</header>
+<main>
+<aside>
+ <h3>📚 Papan Pelajaran</h3>
+ <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+ <div class="progress-copy" id="progressCopy">0 dari 6 pelajaran selesai</div>
+ <nav class="nav" id="nav">
+  <button class="active" data-i="0">01 · Mengenal Rotasi</button>
+  <button data-i="1" disabled>🔒 02 · Unsur Rotasi</button>
+  <button data-i="2" disabled>🔒 03 · Rotasi 90°</button>
+  <button data-i="3" disabled>🔒 04 · Rotasi 180°</button>
+  <button data-i="4" disabled>🔒 05 · Rotasi 270°</button>
+  <button data-i="5" disabled>🔒 06 · Matriks & Praktik</button>
+ </nav>
+ <p class="lock-note">💡 Baca seluruh isi pelajaran dan centang pernyataan selesai untuk membuka pelajaran berikutnya.</p>
+</aside>
+<section class="content">
+<div class="card" id="lesson">
+ <div class="kicker">PELAJARAN 01 · DASAR</div>
+ <h2>Mengenal Rotasi (Perputaran)</h2>
+ <p>Dalam transformasi geometri, <b>rotasi</b> adalah perubahan posisi suatu titik atau bangun dengan cara memutarnya terhadap titik tertentu. Titik yang menjadi acuan putaran disebut <b>pusat rotasi</b>. Putaran ditentukan oleh besar sudut dan arah putarnya.</p>
+ <p>Bayangkan jarum jam yang bergerak mengelilingi titik tengah jam. Ujung jarum berpindah posisi karena berputar, sedangkan titik tengahnya tetap. Prinsip yang sama digunakan ketika sebuah titik atau bangun diputar pada bidang koordinat.</p>
+ <div class="callout"><b>Hal penting:</b> rotasi mengubah posisi dan orientasi bangun, tetapi mempertahankan bentuk serta ukurannya. Jarak setiap titik terhadap pusat rotasi tetap sama.</div>
+ <h3>Contoh rotasi dalam kehidupan sehari-hari</h3>
+ <div class="grid2"><div class="mini">🕒 <strong>Jarum jam</strong><br><span class="small">Berputar mengelilingi poros di tengah jam.</span></div><div class="mini">🌀 <strong>Kipas angin</strong><br><span class="small">Baling-baling bergerak memutar pada porosnya.</span></div><div class="mini">🎡 <strong>Bianglala</strong><br><span class="small">Kabin bergerak mengitari pusat roda.</span></div><div class="mini">⚙️ <strong>Roda gigi</strong><br><span class="small">Berputar pada titik pusat atau porosnya.</span></div></div>
+ <h3>Notasi rotasi</h3>
+ <p>Rotasi dapat ditulis dengan notasi <b>R(P, α)</b>. Huruf P menyatakan pusat rotasi, sedangkan α (alfa) menyatakan besar sudut rotasi. Sebagai contoh, R(O, 90°) berarti suatu objek diputar 90° dengan pusat O.</p>
+ <div class="formula">A(x, y) → A′(x′, y′)</div>
+ <p>Artinya, titik awal A(x, y) setelah diputar akan menempati posisi bayangan A′(x′, y′).</p>
+ <div class="read-check"><input type="checkbox" class="readDone" id="read0"><label for="read0">Saya sudah membaca dan memahami seluruh materi Pelajaran 01.</label></div>
+ <h3>📝 Cek Pemahaman 01</h3>
+ <div class="quiz" data-quiz="0"><p><b>1. Apa yang dimaksud dengan rotasi?</b></p><label class="option"><input type="radio" name="q0" value="a"> Pergeseran semua titik dengan jarak dan arah yang sama</label><label class="option"><input type="radio" name="q0" value="b"> Perputaran titik atau bangun terhadap suatu pusat</label><label class="option"><input type="radio" name="q0" value="c"> Perubahan ukuran suatu bangun</label><button class="secondary" onclick="checkQuiz(0,'b','Rotasi adalah perputaran titik atau bangun terhadap pusat rotasi.')">Periksa jawaban</button><div class="feedback" id="fb0"></div></div>
+ <div class="actions"><button class="primary" id="next0" disabled onclick="go(1)">Selesaikan & buka Pelajaran 02 →</button></div>
+</div>
+<div class="card hidden" id="lesson1">
+ <div class="kicker">PELAJARAN 02 · UNSUR-UNSUR</div><h2>Unsur Penting dalam Rotasi</h2>
+ <p>Untuk menentukan hasil rotasi, perhatikan tiga hal utama berikut.</p>
+ <div class="mini"><h3>1. Pusat rotasi</h3><p>Titik tetap yang menjadi poros perputaran. Pusat rotasi dapat berada di titik O(0,0) atau titik lain, misalnya P(a,b). Selama rotasi berlangsung, pusat ini tidak berpindah.</p></div>
+ <div class="mini"><h3>2. Sudut rotasi</h3><p>Sudut rotasi menyatakan seberapa jauh objek diputar dari posisi awal ke posisi bayangan. Sudut dapat dinyatakan dalam derajat, misalnya 90°, 180°, atau 270°.</p></div>
+ <div class="mini"><h3>3. Arah rotasi</h3><p>Arah putaran menentukan tanda sudut. Sudut positif menunjukkan putaran berlawanan arah jarum jam, sedangkan sudut negatif menunjukkan putaran searah jarum jam.</p></div>
+ <table><tr><th>Arah putaran</th><th>Tanda sudut</th><th>Contoh</th></tr><tr><td>Berlawanan arah jarum jam</td><td>Positif (+)</td><td>+90°</td></tr><tr><td>Searah jarum jam</td><td>Negatif (−)</td><td>−90°</td></tr></table>
+ <div class="callout gold"><b>Ingat!</b> Rotasi +90° dan rotasi −90° menghasilkan arah putaran yang berbeda. Jangan hanya melihat angka sudutnya; perhatikan juga tandanya.</div>
+ <h3>📝 Cek Pemahaman 02</h3>
+ <div class="quiz"><p><b>1. Sudut −90° menunjukkan putaran ke arah ...</b></p><label class="option"><input type="radio" name="q1" value="a"> Berlawanan arah jarum jam</label><label class="option"><input type="radio" name="q1" value="b"> Searah jarum jam</label><label class="option"><input type="radio" name="q1" value="c"> Tidak mengalami putaran</label><button class="secondary" onclick="checkQuiz(1,'b','Sudut negatif berarti putaran searah jarum jam.')">Periksa jawaban</button><div class="feedback" id="fb1"></div></div>
+ <div class="read-check"><input type="checkbox" class="readDone" id="read1"><label for="read1">Saya sudah membaca dan memahami seluruh materi Pelajaran 02.</label></div>
+ <div class="actions"><button class="primary" id="next1" disabled onclick="go(2)">Selesaikan & buka Pelajaran 03 →</button></div>
+</div>
+<div class="card hidden" id="lesson2">
+ <div class="kicker">PELAJARAN 03 · RUMUS</div><h2>Rotasi 90°</h2>
+ <p>Untuk rotasi 90° berlawanan arah jarum jam dengan pusat O(0,0), koordinat x dan y bertukar tempat. Koordinat yang semula positif atau negatif mengikuti aturan perubahan tanda berikut.</p>
+ <div class="formula">(x, y) → (−y, x)</div>
+ <p>Jika pusat rotasi bukan O(0,0), melainkan P(a,b), rumusnya disesuaikan dengan posisi pusat tersebut.</p>
+ <div class="formula">(x, y) → (a + b − y, b + x − a)</div>
+ <p>Rumus di atas berlaku untuk rotasi +90° (berlawanan arah jarum jam) dengan pusat P(a,b).</p>
+ <h3>Contoh soal</h3><div class="callout"><b>Soal:</b> Titik A(3,2) dirotasikan 90° berlawanan arah jarum jam dengan pusat O(0,0). Tentukan bayangan A′.</div>
+ <p>Gunakan aturan (x,y) → (−y,x). Substitusikan x = 3 dan y = 2:</p><div class="formula">A′ = (−2, 3)</div>
+ <p>Jadi, bayangan titik A(3,2) adalah <b>A′(−2,3)</b>.</p>
+ <h3>📝 Cek Pemahaman 03</h3>
+ <div class="quiz"><p><b>1. Titik B(5,−1) dirotasikan +90° terhadap O(0,0). Koordinat B′ adalah ...</b></p><label class="option"><input type="radio" name="q2" value="a"> (1, 5)</label><label class="option"><input type="radio" name="q2" value="b"> (−1, −5)</label><label class="option"><input type="radio" name="q2" value="c"> (−5, 1)</label><button class="secondary" onclick="checkQuiz(2,'a','Gunakan (x,y) → (−y,x). Maka (5,−1) menjadi (1,5).')">Periksa jawaban</button><div class="feedback" id="fb2"></div></div>
+ <div class="read-check"><input type="checkbox" class="readDone" id="read2"><label for="read2">Saya sudah membaca dan memahami seluruh materi Pelajaran 03.</label></div>
+ <div class="actions"><button class="primary" id="next2" disabled onclick="go(3)">Selesaikan & buka Pelajaran 04 →</button></div>
+</div>
+<div class="card hidden" id="lesson3">
+ <div class="kicker">PELAJARAN 04 · RUMUS</div><h2>Rotasi 180°</h2>
+ <p>Rotasi 180° membuat setiap titik berpindah ke posisi yang berseberangan terhadap pusat rotasi. Jika pusatnya O(0,0), kedua koordinat berubah tanda.</p>
+ <div class="formula">(x, y) → (−x, −y)</div>
+ <p>Untuk pusat P(a,b), koordinat bayangan dihitung dengan mengukur posisi titik terhadap pusat, membalik arahnya, lalu mengembalikannya ke sistem koordinat semula.</p>
+ <div class="formula">(x, y) → (2a − x, 2b − y)</div>
+ <h3>Contoh soal</h3><div class="callout"><b>Soal:</b> Titik C(4,−3) dirotasikan 180° dengan pusat O(0,0).</div><p>Gunakan rumus (x,y) → (−x,−y).</p><div class="formula">C′ = (−4, 3)</div><p>Jadi, bayangan titik C adalah C′(−4,3).</p>
+ <div class="callout gold">Rotasi 180° searah maupun berlawanan arah jarum jam memberikan hasil akhir yang sama karena kedua arah menghasilkan setengah putaran penuh.</div>
+ <h3>📝 Cek Pemahaman 04</h3>
+ <div class="quiz"><p><b>1. Titik D(−2,6) dirotasikan 180° terhadap O(0,0). Hasilnya ...</b></p><label class="option"><input type="radio" name="q3" value="a"> (−6, 2)</label><label class="option"><input type="radio" name="q3" value="b"> (2, −6)</label><label class="option"><input type="radio" name="q3" value="c"> (6, −2)</label><button class="secondary" onclick="checkQuiz(3,'b','Kedua tanda koordinat dibalik: (−2,6) menjadi (2,−6).')">Periksa jawaban</button><div class="feedback" id="fb3"></div></div>
+ <div class="read-check"><input type="checkbox" class="readDone" id="read3"><label for="read3">Saya sudah membaca dan memahami seluruh materi Pelajaran 04.</label></div>
+ <div class="actions"><button class="primary" id="next3" disabled onclick="go(4)">Selesaikan & buka Pelajaran 05 →</button></div>
+</div>
+<div class="card hidden" id="lesson4">
+ <div class="kicker">PELAJARAN 05 · RUMUS</div><h2>Rotasi 270°</h2>
+ <p>Rotasi 270° berlawanan arah jarum jam setara dengan rotasi 90° searah jarum jam. Pada pusat O(0,0), koordinat berubah mengikuti aturan berikut.</p>
+ <div class="formula">(x, y) → (y, −x)</div>
+ <p>Jika pusat rotasi P(a,b), rumus rotasi +270° adalah:</p>
+ <div class="formula">(x, y) → (a + y − b, b − x + a)</div>
+ <p>Perlu diperhatikan bahwa rotasi +270° berbeda arah dengan rotasi −270°. Rotasi −270° setara dengan rotasi +90°.</p>
+ <table><tr><th>Sudut</th><th>Aturan terhadap O(0,0)</th><th>Keterangan</th></tr><tr><td>+90°</td><td>(−y, x)</td><td>¼ putaran berlawanan jarum jam</td></tr><tr><td>180°</td><td>(−x, −y)</td><td>½ putaran</td></tr><tr><td>+270°</td><td>(y, −x)</td><td>¾ putaran berlawanan jarum jam</td></tr></table>
+ <h3>Contoh soal</h3><div class="callout"><b>Soal:</b> Titik E(2,5) dirotasikan +270° terhadap O(0,0).</div><p>Gunakan aturan (x,y) → (y,−x).</p><div class="formula">E′ = (5, −2)</div>
+ <h3>📝 Cek Pemahaman 05</h3>
+ <div class="quiz"><p><b>1. Titik F(−3,4) dirotasikan +270° terhadap O(0,0). Bayangannya adalah ...</b></p><label class="option"><input type="radio" name="q4" value="a"> (−4, −3)</label><label class="option"><input type="radio" name="q4" value="b"> (4, 3)</label><label class="option"><input type="radio" name="q4" value="c"> (3, −4)</label><button class="secondary" onclick="checkQuiz(4,'b','Aturan +270° adalah (x,y) → (y,−x). Jadi (−3,4) menjadi (4,3).')">Periksa jawaban</button><div class="feedback" id="fb4"></div></div>
+ <div class="read-check"><input type="checkbox" class="readDone" id="read4"><label for="read4">Saya sudah membaca dan memahami seluruh materi Pelajaran 05.</label></div>
+ <div class="actions"><button class="primary" id="next4" disabled onclick="go(5)">Selesaikan & buka Pelajaran 06 →</button></div>
+</div>
+<div class="card hidden" id="lesson5">
+ <div class="kicker">PELAJARAN 06 · RANGKUMAN & EKSPLORASI</div><h2>Matriks Rotasi dan Laboratorium Koordinat</h2>
+ <p>Rotasi terhadap pusat O(0,0) juga dapat dinyatakan menggunakan matriks. Untuk sudut α, koordinat bayangan diperoleh dengan mengalikan matriks rotasi dengan vektor koordinat titik asal.</p>
+ <div class="formula">[ x′ ]   [ cos α   −sin α ] [ x ]<br>[ y′ ] = [ sin α    cos α ] [ y ]</div>
+ <p>Dengan α sebagai sudut rotasi. Matriks ini menunjukkan bahwa koordinat baru bergantung pada nilai sinus dan cosinus sudut tersebut.</p>
+ <h3>Ringkasan rumus pusat O(0,0)</h3>
+ <table><tr><th>Rotasi</th><th>Bayangan (x′, y′)</th></tr><tr><td>+90°</td><td>(−y, x)</td></tr><tr><td>−90°</td><td>(y, −x)</td></tr><tr><td>180°</td><td>(−x, −y)</td></tr><tr><td>+270°</td><td>(y, −x)</td></tr><tr><td>−270°</td><td>(−y, x)</td></tr></table>
+ <h3>🔬 Coba Laboratorium Koordinat</h3>
+ <p>Masukkan koordinat titik dan pilih sudut. Amati bagaimana posisi bayangan berubah pada bidang koordinat. Simulasi ini menggunakan pusat O(0,0).</p>
+ <div class="controls"><label>x <input type="number" id="vx" value="3"></label><label>y <input type="number" id="vy" value="2"></label><label>Sudut <select id="angle"><option value="90">+90°</option><option value="-90">−90°</option><option value="180">180°</option><option value="270">+270°</option></select></label><button class="primary" onclick="drawRotation()">Putar titik</button></div>
+ <canvas id="plane" width="620" height="390" aria-label="Bidang koordinat rotasi"></canvas><p id="simResult" class="callout green">Titik asal A(3,2). Pilih sudut lalu tekan Putar titik.</p>
+ <h3>📝 Evaluasi Akhir</h3>
+ <div class="quiz"><p><b>1. Matriks rotasi umum untuk sudut α adalah ...</b></p><label class="option"><input type="radio" name="q5" value="a"> [cos α −sin α; sin α cos α]</label><label class="option"><input type="radio" name="q5" value="b"> [cos α sin α; sin α −cos α]</label><label class="option"><input type="radio" name="q5" value="c"> [sin α cos α; cos α sin α]</label><button class="secondary" onclick="checkQuiz(5,'a','Matriks rotasi adalah [[cos α, −sin α], [sin α, cos α]].')">Periksa jawaban</button><div class="feedback" id="fb5"></div></div>
+ <div class="quiz"><p><b>2. Titik P(−4,3) diputar −90° terhadap O(0,0). Hasilnya ...</b></p><label class="option"><input type="radio" name="q6" value="a"> (−3, −4)</label><label class="option"><input type="radio" name="q6" value="b"> (3, 4)</label><label class="option"><input type="radio" name="q6" value="c"> (−3, 4)</label><button class="secondary" onclick="checkQuiz(6,'b','Rotasi −90° memakai aturan (x,y) → (y,−x), sehingga (−4,3) menjadi (3,4).')">Periksa jawaban</button><div class="feedback" id="fb6"></div></div>
+ <div class="quiz"><p><b>3. Titik Q(1,−5) diputar 180° terhadap pusat (2,1). Bayangan Q′ adalah ...</b></p><label class="option"><input type="radio" name="q7" value="a"> (3, 7)</label><label class="option"><input type="radio" name="q7" value="b"> (−3, 7)</label><label class="option"><input type="radio" name="q7" value="c"> (3, −7)</label><button class="secondary" onclick="checkQuiz(7,'a','Gunakan (2a−x, 2b−y) = (4−1, 2−(−5)) = (3,7).')">Periksa jawaban</button><div class="feedback" id="fb7"></div></div>
+ <div class="read-check"><input type="checkbox" class="readDone" id="read5"><label for="read5">Saya sudah membaca rangkuman dan mencoba laboratorium koordinat.</label></div>
+ <div class="actions"><button class="primary" id="finish" disabled onclick="finishCourse()">Selesaikan pembelajaran</button></div>
+</div>
+<div class="card hidden" id="certificate"><div class="kicker">KELAS SELESAI</div><h2>🎉 Hebat! Kamu menuntaskan kelas rotasi.</h2><p id="finalText">Kamu telah menyelesaikan seluruh pelajaran.</p><div class="callout green">Terus berlatih agar semakin mahir menentukan bayangan titik hasil rotasi.</div><button class="secondary" onclick="location.reload()">Ulangi pembelajaran</button></div>
+</section>
+</main>
+<footer>Rotasi Geometry Classroom · Media Pembelajaran Interaktif Matematika</footer>
+<script>
+const total=6;let unlocked=0;let completed=new Set();let quizScores={};
+function updateProgress(){document.getElementById('progressFill').style.width=(completed.size/total*100)+'%';document.getElementById('progressCopy').textContent=completed.size+' dari '+total+' pelajaran selesai';}
+function go(i){if(i>unlocked)return;document.querySelectorAll('#lesson,#lesson1,#lesson2,#lesson3,#lesson4,#lesson5,#certificate').forEach(e=>e.classList.add('hidden'));document.getElementById(i===0?'lesson':'lesson'+i).classList.remove('hidden');document.querySelectorAll('.nav button').forEach((b,j)=>b.classList.toggle('active',j===i));window.scrollTo({top:0,behavior:'smooth'});}
+document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>go(Number(b.dataset.i))));
+document.querySelectorAll('.readDone').forEach((box,i)=>box.addEventListener('change',()=>{const next=document.getElementById('next'+i)||document.getElementById('finish');next.disabled=!box.checked;if(box.checked){completed.add(i);unlocked=Math.max(unlocked,Math.min(i+1,5));document.querySelectorAll('.nav button').forEach((b,j)=>{b.disabled=j>unlocked;b.textContent=(j>unlocked?'🔒 ':'')+['01 · Mengenal Rotasi','02 · Unsur Rotasi','03 · Rotasi 90°','04 · Rotasi 180°','05 · Rotasi 270°','06 · Matriks & Praktik'][j];});}else{completed.delete(i);}updateProgress();}));
+function checkQuiz(n,answer,explain){const selected=document.querySelector('input[name="q'+n+'"]:checked');const fb=document.getElementById('fb'+n);if(!selected){fb.textContent='Pilih salah satu jawaban terlebih dahulu.';fb.className='feedback wrong';return;}if(selected.value===answer){fb.textContent='✓ Tepat! '+explain;fb.className='feedback correct';quizScores[n]=true;}else{fb.textContent='Belum tepat. Coba baca kembali penjelasan dan rumus pada materi, lalu ulangi.';fb.className='feedback wrong';quizScores[n]=false;}}
+function finishCourse(){document.querySelectorAll('#lesson,#lesson1,#lesson2,#lesson3,#lesson4,#lesson5').forEach(e=>e.classList.add('hidden'));document.getElementById('certificate').classList.remove('hidden');const correct=Object.values(quizScores).filter(Boolean).length;document.getElementById('finalText').textContent='Kamu sudah menandai seluruh materi selesai. Jawaban benar yang tercatat: '+correct+' dari 8 soal yang sudah diperiksa.';window.scrollTo({top:0,behavior:'smooth'});}
+function drawRotation(){const x=Number(document.getElementById('vx').value),y=Number(document.getElementById('vy').value),a=Number(document.getElementById('angle').value);let X,Y;if(a===90){X=-y;Y=x}else if(a===-90){X=y;Y=-x}else if(a===180){X=-x;Y=-y}else{X=y;Y=-x}document.getElementById('simResult').textContent='Titik A('+x+','+y+') setelah rotasi '+(a>0?'+':'')+a+'° menjadi A′('+X+','+Y+').';drawPlane(x,y,X,Y);}
+function drawPlane(x=3,y=2,X=null,Y=null){const c=document.getElementById('plane');if(!c)return;const ctx=c.getContext('2d'),w=c.width,h=c.height,unit=28,cx=w/2,cy=h/2;ctx.clearRect(0,0,w,h);ctx.strokeStyle='#e5edf6';ctx.lineWidth=1;for(let i=-10;i<=10;i++){ctx.beginPath();ctx.moveTo(cx+i*unit,0);ctx.lineTo(cx+i*unit,h);ctx.stroke();ctx.beginPath();ctx.moveTo(0,cy+i*unit);ctx.lineTo(w,cy+i*unit);ctx.stroke();}ctx.strokeStyle='#536b88';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(0,cy);ctx.lineTo(w,cy);ctx.moveTo(cx,0);ctx.lineTo(cx,h);ctx.stroke();ctx.fillStyle='#536b88';ctx.font='13px sans-serif';ctx.fillText('x',w-16,cy-9);ctx.fillText('y',cx+9,15);function point(px,py,color,label){ctx.fillStyle=color;ctx.beginPath();ctx.arc(cx+px*unit,cy-py*unit,6,0,Math.PI*2);ctx.fill();ctx.font='bold 14px sans-serif';ctx.fillText(label,cx+px*unit+9,cy-py*unit-9);}point(x,y,'#e69b2f','A');if(X!==null&&Y!==null){ctx.setLineDash([6,5]);ctx.strokeStyle='#90a4bd';ctx.beginPath();ctx.moveTo(cx+x*unit,cy-y*unit);ctx.lineTo(cx,cy);ctx.lineTo(cx+X*unit,cy-Y*unit);ctx.stroke();ctx.setLineDash([]);point(X,Y,'#3476c5','A′');}}
+drawPlane();
+</script>
+</body>
+</html>
